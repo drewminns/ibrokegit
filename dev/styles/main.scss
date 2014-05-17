@@ -1,0 +1,473 @@
+*,
+*:before,
+*:after {
+	box-sizing: border-box;
+	-moz-border-box: box-sizing;
+	-webkit-border-box: box-sizing;
+}
+
+@import '_mixins';
+@import '_colours'; // Better Colours
+@import '_grid'; // Better Colours
+@import '_animate'; // Better Colours
+
+// Specify the number of columns and set column and gutter widths
+$columns: 12;
+$column-width: 60;
+$gutter-width: 20;
+
+// Remove the definition below for a pixel-based layout
+$total-width: 100%;
+
+/* ---------------------------
+Fonts are located in dist/css/fonts bro
+------------------------------ */
+@include importfont('Montserrat Regular', 'fonts/Montserrat-Regular', 400);
+@include importfont('SourceCodePro-Regular', 'fonts/SourceCodePro-Regular', 300);
+// **********************
+// Set Variables Here
+//***********************
+$basefontsize: 10px;
+$baselineheight: 1.5;
+$cap-height: 		0.68;
+$basefontcolour: #333;
+$basefontfamily: "Montserrat Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$helveticafontfamily: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$headingsfontfamily: "Montserrat Regular", "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+$sourcefontfamily: "SourceCodePro-Regular", Monaco, "Bitstream Vera Sans Mono", monospace;
+$linkcolour: #0074D9;
+
+body {
+	height: 100%;
+	color: #333;
+	font-weight: 300;
+	font-size: $basefontsize;
+	font-family: $basefontfamily;
+	background: url('../images/Blur-4.png');
+	background-size: cover;
+}
+
+// Headings
+// -------------------------
+h1, h2, h3, h4, h5, h6, p, ul {
+	-webkit-margin-before:0em;
+	-webkit-margin-after:0em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	text-transform: uppercase;
+  font-weight: 100;
+	font-family: $headingsfontfamily;
+	text-rendering: optimizelegibility; // Fix the character spacing for headings
+	a {
+		color: $basefontcolour;
+	}
+}
+
+h1 {
+	@include fontbase(32px);
+}
+
+h2 {
+	@include fontbase(42px);
+}
+
+h3 {
+	@include fontbase(36px);
+}
+
+h4 {
+	@include fontbase(32px);
+}
+
+h5 {
+	@include fontbase(28px);
+}
+
+// General Typography
+// -------------------------
+p {
+	@include fontbase(12px);
+}
+
+a {
+	color: $linkcolour;
+	text-decoration: none;
+}
+
+// Lists
+// --------------------------------------------------
+
+// Unordered and Ordered lists
+ul, ol {
+	margin: 0;
+	padding: 0;
+}
+
+ul ul,
+ul ol,
+ol ol,
+ol ul {
+	margin-bottom: 0;
+}
+
+// **********************
+// All Styles Go Below Here Bud
+//***********************
+
+.container {
+	max-width: 1080px;
+	margin: 0 auto;
+}
+
+header.top {
+	color: #f6f6f6;
+	background: #141E21;
+	width: 100%;
+	float: left;
+	margin-top: 50px;
+	.logo {
+		background: #BD4030;
+		font-family: $sourcefontfamily;
+		font-weight: 700;
+		@include fontbase(36px);
+		color: #f6f6f6;
+		float: left;
+		width: 7%;
+		height: 100%;
+		padding: 24px 0 27px 14px;
+	}
+	.details {
+		float: left;
+		display: block;
+		width: 93%;
+		padding: 16px 0 21px 17px;
+
+		h1.title {
+			margin-top: 12px;
+			float: left;
+		}
+	}
+}
+
+
+.includes.ng-enter {
+    -webkit-animation: bounceInLeft 1s;
+    -moz-animation: bounceInLeft 1s;
+    -ms-animation: bounceInLeft 1s;
+    animation: bounceInLeft 1s;
+}
+
+section.selection {
+	width: 100%;
+	float: left;
+	background: rgba(#FEFEFD, 0.5);
+	padding: 40px 0;
+	color: #333;
+	font-size: 21px;
+	.wrapper {
+		max-width: 800px;
+		margin: 0 auto;
+		.title {
+			font-size: 32px;
+			line-height: 48px;
+		}
+		p {
+			font-size: 21px;
+		}
+		p.small {
+			font-size: 14px;
+		}
+		ul.instruct {
+			margin: 15px 0;
+			font-family: $sourcefontfamily;
+			color: #f6f6f6;
+			li {
+				margin: 10px 0;
+				background: rgba(0,0,0,0.7);
+				padding: 10px;
+			}
+			li:before {
+				content: ">";
+				margin-right: 30px;
+			}
+		}
+	}
+}
+
+footer {
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background: #141E21;
+	color: #f6f6f6;
+	padding: 15px 10px;
+	a {
+		color: #1abc9c;
+		margin-left: 5px;
+	}
+}
+
+
+/****** dropdown-select *******/
+
+.wrap-dd-select {
+	/* Size and position */
+	position: relative;
+	margin: 19px 0px 0px 13px;
+	width: 450px;
+	float: left;
+	padding: 10px;
+	display: block;
+
+	/* Styles */
+	background: #fff;
+	border: 1px solid rgba(0,0,0,0.15);
+	box-shadow: 0 1px 1px rgba(50,50,50,0.1);
+	cursor: pointer;
+	outline: none;
+	font-size: 14px;
+
+	/* Font settings */
+	font-weight: bold;
+	color: #2c3e50;
+}
+
+.wrap-dd-select:after {
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	right: 15px;
+	top: 50%;
+	margin-top: -3px;
+	border-width: 6px 6px 0 6px;
+	border-style: solid;
+	border-color: #2c3e50 transparent;
+}
+
+.wrap-dd-select .dropdown {
+	/* Size & position */
+	position: absolute;
+	top: 120%;
+	left: 0;
+	right: 0;
+
+	/* Styles */
+	background: white;
+	padding: 0;
+	border-radius: inherit;
+	border: 1px solid rgba(0,0,0,0.17);
+	box-shadow: 0 0 5px rgba(0,0,0,0.1);
+	font-weight: normal;
+	transition: all 0.2s ease-in;
+	list-style: none;
+
+	/* Hiding */
+	opacity: 0;
+	pointer-events: none;
+}
+
+.wrap-dd-select .dropdown li.divider {
+	padding: 2px 0;
+	background: #e6e8ea;
+}
+
+.wrap-dd-select .dropdown li a {
+	display: block;
+	padding: 10px;
+	font-size: 14px;
+	text-decoration: none;
+	color: #2c3e50;
+	border-bottom: 1px solid #e6e8ea;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+	transition: all 0.3s ease-out;
+}
+
+.wrap-dd-select .dropdown li i {
+	float: right;
+	color: inherit;
+}
+
+.wrap-dd-select .dropdown li:first-of-type a {
+	border-radius: 7px 7px 0 0;
+}
+
+.wrap-dd-select .dropdown li:last-of-type a {
+	border-radius: 0 0 7px 7px;
+	border: none;
+}
+
+/* Hover state */
+
+.wrap-dd-select .dropdown li:hover a {
+	background: #f3f8f8;
+}
+
+.wrap-dd-select .dropdown:after {
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	bottom: 100%;
+	right: 15px;
+	border-width: 0 6px 6px 6px;
+	border-style: solid;
+	border-color: #fff transparent;
+}
+
+.wrap-dd-select .dropdown:before {
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	bottom: 100%;
+	right: 13px;
+	border-width: 0 8px 8px 8px;
+	border-style: solid;
+	border-color: rgba(0,0,0,0.1) transparent;
+}
+
+.wrap-dd-select.active .dropdown {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+/****** dropdown-menu *******/
+.wrap-dd-menu {
+	/* Size and position */
+	position: relative;
+	width: 200px;
+	margin: 0 auto;
+	padding: 10px;
+}
+
+.wrap-dd-menu .dropdown {
+	/* Size & position */
+	position: absolute;
+	z-index: 1;
+	top: 70%;
+	left: 0;
+	right: 0;
+
+	/* Styles */
+	background: white;
+	padding: 0;
+	border-radius: 7px;
+	border: 1px solid rgba(0,0,0,0.17);
+	box-shadow: 0 0 5px rgba(0,0,0,0.1);
+	font-weight: normal;
+	transition: all 0.2s ease-in;
+	list-style: none;
+
+	/* Hiding */
+	opacity: 0;
+	pointer-events: none;
+}
+
+.wrap-dd-menu .dropdown li.divider {
+	padding: 2px 0;
+	background: #e6e8ea;
+}
+
+.wrap-dd-menu .dropdown li a {
+	display: block;
+	padding: 10px;
+	text-decoration: none;
+	color: #8aa8bd;
+	border-bottom: 1px solid #e6e8ea;
+	box-shadow: inset 0 1px 0 rgba(255,255,255,1);
+	transition: all 0.3s ease-out;
+}
+
+.wrap-dd-menu .dropdown li i {
+	float: right;
+	color: inherit;
+}
+
+.wrap-dd-menu .dropdown li:first-of-type a {
+	border-radius: 7px 7px 0 0;
+}
+
+.wrap-dd-menu .dropdown li:last-of-type a {
+	border-radius: 0 0 7px 7px;
+	border: none;
+}
+
+/* Hover state */
+
+.wrap-dd-menu .dropdown li:hover a {
+	background: #f3f8f8;
+}
+
+.wrap-dd-menu .dropdown:after {
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	bottom: 100%;
+	border-width: 0 6px 6px 6px;
+	border-style: solid;
+	border-color: #fff transparent;
+}
+
+.wrap-dd-menu .dropdown:before {
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	bottom: 100%;
+	right: 95px;
+	border-width: 0 8px 8px 8px;
+	border-style: solid;
+	border-color: rgba(0,0,0,0.1) transparent;
+}
+
+.wrap-dd-menu .dropdown.active {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+
+.btn-menu {
+	padding: 5px 25px;
+	background: #fff;
+	border: 1px solid rgba(0,0,0,0.15);
+	border-radius: 7px;
+	box-shadow: 0 1px 1px rgba(50,50,50,0.25);
+	/*style the text*/
+	color: #8AA8BD;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.btn-menu:hover, .btn-menu:focus {
+	box-shadow: 0 1px 1px rgba(50,50,50,0.75);
+}
+
+
+.sample-show-hide {
+  padding:10px;
+  border:1px solid black;
+  background:white;
+}
+
+.sample-show-hide.ng-hide-add, .sample-show-hide.ng-hide-remove {
+  -webkit-transition:all linear 0.5s;
+  -moz-transition:all linear 0.5s;
+  -o-transition:all linear 0.5s;
+  transition:all linear 0.5s;
+  display:block!important;
+}
+
+.sample-show-hide.ng-hide-add.ng-hide-add-active,
+.sample-show-hide.ng-hide-remove {
+  opacity:0;
+}
+
+.sample-show-hide.ng-hide-add,
+.sample-show-hide.ng-hide-remove.ng-hide-remove-active {
+  opacity:1;
+}

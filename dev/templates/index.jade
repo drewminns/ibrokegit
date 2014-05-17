@@ -1,0 +1,101 @@
+doctype html
+html(lang='en', ng-app="gitApp")
+	head
+		include includes/header
+	body
+
+		div(ng-controller="gitAppCtrl")
+			.container
+				header.top
+					.logo :(
+					.details
+						h1.title i broke git while trying to
+						div(dropdown-select="templateOptions", dropdown-model="templateSelected")
+				div.includes(ng-include src="templateSelected.url")
+			footer
+				p made with love by
+					a(href="http://twitter.com/drewisthe", target="_blank") drewisthe
+
+		script(type="text/ng-template", id="push.html")
+			section.selection
+					.wrapper
+						.title Did you do the following steps?
+						ul.instruct
+							li git status
+							li git add (file name)
+							li git commit -m "Put a commit message here"
+							li git push origin (branch name)
+
+		script(type="text/ng-template", id="pullLocal.html")
+			section.selection
+					.wrapper
+						.title Did you do the following steps?
+						ul.instruct
+							li git pull origin (branch name)
+						p Merge Conflict?
+						p.small Fix the files locally and then
+						ul.instruct
+							li git status
+							li git add (fixed filename)
+							li git commit -m "Fixed Merge Conflicts"
+							li git push origin (branch name)
+
+		script(type="text/ng-template", id="pullUpstream.html")
+			section.selection
+					.wrapper
+						.title Did you do the following steps?
+						ul.instruct
+							li git pull remote upstream
+						p Merge Conflict?
+						p.small Fix the files locally and then
+						ul.instruct
+							li git status
+							li git add (fixed filename)
+							li git commit -m "Fixed Merge Conflicts"
+							li git push origin (branch name)
+
+		script(type="text/ng-template", id="clone.html")
+			section.selection
+					.wrapper
+						.title Did you do the following steps?
+						p Get the clone url from the repo and navigate locally to the parent folder that you would like the repo to be cloned into
+						ul.instruct
+							li git clone (copied url)
+
+		script(type="text/ng-template", id="create.html")
+			section.selection
+					.wrapper
+						.title Did you do the following steps?
+						p Create a repo on Github or Bitbucket and copy the URL generated
+						p Navigate to the project folder on your computer
+						ul.instruct
+							li git init
+							li git remote add (url from Github or Bitbucket)
+							li git add .
+							li git commit -m "initial commit"
+							li git push origin master
+
+		script(type="text/ng-template", id="fork.html")
+			section.selection
+					.wrapper
+						.title Did you do the following steps?
+						p Click the 'Fork' button on an existing repo and copy the URL generated from the resulting copy
+						p Navigate to where you'd like to store the files locally.
+						ul.instruct
+							li git clone (copied url)
+						p To pull updates from original source, navigate into your local version directory
+						ul.instruct
+							li git remote add upstream (original repo url)
+							li git pull upstream master
+
+
+
+		script(type="text/ng-template", id="pullRequest.html")
+			section.selection
+					.wrapper
+						.title Did you do the following steps?
+						ul.instruct
+							li git add (files changed)
+							li git commit -m "commit message"
+							li git push origin master
+						p On Github or Bitbucket, click the Pull Request button and follow the instructions

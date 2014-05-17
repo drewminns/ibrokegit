@@ -1,0 +1,36 @@
+{
+  "name": "strongarm",
+  "version": "1",
+  "description": "componenetssssssss",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "modernizr": "~2.6.2",
+    "jquery": "~1.10.2"
+  },
+  "dependenciesIgnore": {
+    "jquery": [
+      "**/!(jquery.js)"
+    ],
+    "modernizr": [
+      "**/!(modernizr.js)"
+    ],
+    "when": [
+      "docs",
+      "test",
+      "*.!(js)",
+      ".*"
+    ]
+  },
+  "authors": [
+    "Drew Minns"
+  ],
+  "homepage": "http://www.drewminns.com"
+}

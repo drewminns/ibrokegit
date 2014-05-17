@@ -1,0 +1,24 @@
+{
+  "name": "strongarm",
+  "version": "0.0.1",
+  "dependencies": {
+    "grunt-cli": "latest",
+    "grunt-contrib-concat": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-contrib-sass": "latest",
+    "grunt-contrib-watch": "latest"
+  },
+  "devDependencies": {
+    "grunt-contrib-sass": "~0.7.2",
+    "grunt-autoprefixer": "~0.7.2",
+    "grunt-contrib-connect": "~0.6.0",
+    "grunt-bower-install": "~1.4.0",
+    "grunt-bower-clean": "~0.2.1",
+    "grunt-html-build": "~0.3.2",
+    "grunt-bowercopy": "~1.0.0",
+    "grunt-uncss": "~0.3.2",
+    "grunt-jade": "~0.4.0",
+    "grunt-svginject": "0.0.1",
+    "grunt-wiredep": "~1.7.0"
+  }
+}

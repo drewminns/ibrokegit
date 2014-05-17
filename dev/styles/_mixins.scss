@@ -1,0 +1,345 @@
+@import '_functions';
+
+
+// ----------------------------------------------------------------------------------------
+// #######################################################################################
+// Mega Mixin galore
+// ----------------------------------------------------------------------------------------
+
+
+@mixin importfont($font-family, $font-filename, $font-weight : normal, $font-style :normal, $font-stretch : normal) {
+	@font-face {
+		font-family: '#{$font-family}';
+		src: url('#{$font-filename}.eot');
+		src: url('#{$font-filename}.eot?#iefix') format('embedded-opentype'),
+		url('#{$font-filename}.woff') format('woff'),
+		url('#{$font-filename}.ttf') format('truetype'),
+		url('#{$font-filename}.svg##{$font-family}') format('svg');
+		font-weight: $font-weight;
+		font-style: $font-style;
+		font-stretch: $font-stretch;
+	}
+}
+
+// -------------------------
+// Border-Box
+// --------
+// For making elements respond like you'd expect them to.
+@mixin box-sizing () {
+	@each $vendor in $vendors {
+		#{$vendor}box-sizing: border-box;
+	}
+	box-sizing:border-box;
+}
+
+// -------------------------
+// Vendor Prefix everything
+// --------
+@mixin prefixr($rule, $value) {
+	-moz-#{$rule}: $value;
+	-webkit-#{$rule}: $value;
+	-o-#{$rule}: $value;
+	#{$rule}: $value;
+}
+
+// -------------------------
+// Create a full width block element
+// --------
+@mixin fullwidth() {
+	display: inline-block;
+	float: left;
+	width: 100%;
+}
+
+// --------------------------
+// Linear Gradient Mixin
+// Requires _linear-positions-parser function
+// Thank you Bourbon
+// ---------
+// EXAMPLES
+// @include linear-gradient(#1e5799, #2989d8);
+// @include linear-gradient(to top, #8fdce5, #3dc3d1);
+// @include linear-gradient(to top, #8fdce5, #3dc3d1, $fallback: red);
+// @include linear-gradient(50deg, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%);
+// --------------------------
+@mixin linear-gradient($pos, $stop1, $stop2: null, $stop3: null, $stop4: null, $stop5: null, $stop6: null, $stop7: null, $stop8: null, $stop9: null, $stop10: null, $fallback: null) {
+	// Detect what type of value exists in $pos
+	$pos-type: type-of(nth($pos, 1));
+	$pos-spec: null;
+	$pos-degree: null;
+
+	// If $pos is missing from mixin, reassign vars and add default position
+	@if ($pos-type == color) or (nth($pos, 1) == "transparent")  {
+	$stop10: $stop9; $stop9: $stop8; $stop8: $stop7; $stop7: $stop6; $stop6: $stop5;
+	 $stop5: $stop4; $stop4: $stop3; $stop3: $stop2; $stop2: $stop1; $stop1: $pos;
+	 $pos: null;
+	}
+
+	@if $pos {
+	$positions: _linear-positions-parser($pos);
+	$pos-degree: nth($positions, 1);
+	$pos-spec:   nth($positions, 2);
+	}
+
+	$full: $stop1, $stop2, $stop3, $stop4, $stop5, $stop6, $stop7, $stop8, $stop9, $stop10;
+
+	// Set $G1 as the default fallback color
+	$fallback-color: nth($stop1, 1);
+
+	// If $fallback is a color use that color as the fallback color
+	@if (type-of($fallback) == color) or ($fallback == "transparent") {
+	$fallback-color: $fallback;
+	}
+
+	background-color: $fallback-color;
+	background-image: -webkit-linear-gradient($pos-degree $full); // Safari 5.1+, Chrome
+	background-image: unquote("linear-gradient(#{$pos-spec}#{$full})");
+}
+
+// -------------------------
+// Box-Shadow
+// --------
+// For making elements respond like you'd expect them to.
+@mixin box-shadow($top, $left, $blur, $color, $inset: false) {
+	@if $inset {
+		@each $vendor in $vendors {
+			#{$vendor}box-shadow: inset $top $left $blur $color;
+		}
+		box-shadow: inset $top $left $blur $color;
+	} @else {
+		@each $vendor in $vendors {
+			#{$vendor}box-shadow: $top $left $blur $color;
+		}
+		box-shadow: $top $left $blur $color;
+	}
+}
+
+@mixin duoboxshadow( $string: -1px 0px 5px 0px rgba(50, 50, 50, 0.75), $stringinset: inset 0px 0px 14px -5px rgba(50, 50, 50, 0.75)) {
+	-webkit-box-shadow: $string, $stringinset;
+	-moz-box-shadow:    $string, $stringinset;
+	box-shadow:         $string, $stringinset;
+}
+
+// Auto Retina Image
+@mixin image-2x($image, $width, $height) {
+	@media (min--moz-device-pixel-ratio: 1.3),
+				 (-o-min-device-pixel-ratio: 2.6/2),
+				 (-webkit-min-device-pixel-ratio: 1.3),
+				 (min-device-pixel-ratio: 1.3),
+				 (min-resolution: 1.3dppx) {
+		/* on retina, use image that's scaled by 2 */
+		background-image: url($image);
+		background-size: $width $height;
+	}
+}
+
+// -------------------------
+// Size
+// -----------
+// Takes Width and Height values respectively in that order and applies px to them.
+@mixin inlinebox($dimension1, $dimension2: false ) {
+	$widthpx: ();
+	$heightpx: ();
+	@each $i in $dimension1 {
+		$widthpx: append($widthpx, $i + px);
+	}
+	@each $i in $dimension2 {
+		$heightpx: append($heightpx, $i + px);
+	}
+ 	@if $dimension2 {
+ 		height: $widthpx;
+ 		width: $heightpx;
+ } @else {
+ 		height: $widthpx;
+ 		width: $widthpx;
+ 	}
+}
+
+// -------------------------
+//  Text-Shadow
+// -------------------------
+@mixin text-shadow ($string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+	text-shadow: $string;
+}
+
+// -------------------------
+// Transition
+// -------------------------
+@mixin transition($string: all 0.50s ease-in-out ) {
+	@each $vendor in $vendors {
+		#{$vendor}transition: $string;
+	}
+	transition: $string;
+}
+
+// -------------------------
+//  Rounded Corners
+// -------------------------
+@mixin borderradius($radius) {
+	@each $vendor in $vendors {
+		#{$vendor}border-radius: $radius;
+	}
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+}
+
+
+
+@mixin radius($radius: false, $topleftradius: false, $toprightradius: false, $bottomrightradius: false, $bottomleftradius: false) {
+	@if $radius {
+		@each $vendor in $vendors {
+			#{$vendor}border-radius: $radius;
+		}
+	}
+	@if $topleftradius {
+		@each $vendor in $vendors {
+			#{$vendor}border-top-left-radius: $topleftradius;
+		}
+	}
+	@if $toprightradius {
+		@each $vendor in $vendors {
+			#{$vendor}border-top-right-radius: $toprightradius;
+		}
+	}
+	@if $bottomrightradius {
+		@each $vendor in $vendors {
+			#{$vendor}border-bottom-right-radius: $bottomrightradius;
+		}
+	}
+	@if $bottomleftradius {
+		@each $vendor in $vendors {
+			#{$vendor}border-bottom-left-radius: $bottomleftradius;
+		}
+	}
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+}
+
+
+
+// -------------------------
+//  Rounded Top Corners
+// -------------------------
+@mixin topradius($radius) {
+	@each $vendor in $vendors {
+		#{$vendor}border-top-right-radius: $radius;
+	}
+	@each $vendor in $vendors {
+		#{$vendor}border-top-left-radius: $radius;
+	}
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+
+// -------------------------
+//  Rounded Right Corners
+// -------------------------
+@mixin rightradius($radius) {
+	@each $vendor in $vendors {
+		#{$vendor}border-bottom-right-radius: $radius;
+	}
+	@each $vendor in $vendors {
+		#{$vendor}top-right-radius: $radius;
+	}
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+
+// -------------------------
+//  Rounded Bottom Corners
+// -------------------------
+@mixin bottomradius($radius) {
+	@each $vendor in $vendors {
+		#{$vendor}border-bottom-right-radius: $radius;
+	}
+	@each $vendor in $vendors {
+		#{$vendor}bottom-left-radius: $radius;
+	}
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+
+// -------------------------
+//  Rounded Left Corners
+// -------------------------
+@mixin leftradius($radius) {
+	@each $vendor in $vendors {
+		#{$vendor}border-bottom-left-radius: $radius;
+	}
+	@each $vendor in $vendors {
+		#{$vendor}border-top-left-radius: $radius;
+	}
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+
+
+// -------------------------
+// Text overflow
+// -------------------------
+@mixin text-truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+// -------------------------
+//  Position Mixin
+// -------------------------
+@mixin pos ($top: auto, $right: auto, $bottom: auto, $left: auto, $type: relative) {
+	top: $top;
+	right: $right;
+	bottom: $bottom;
+	left: $left;
+	position: $type;
+}
+
+// -------------------------
+// IE7 inline-block
+// ----------------
+@mixin ie7-inline-block() {
+	*display: inline; /* IE7 inline-block hack */
+	*zoom: 1;
+}
+
+// -------------------------
+// Overlay
+// -------------------------
+@mixin overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 998;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+}
+
+@mixin hide-text {
+	font: 0/0 a;
+	text-shadow: none;
+	color: transparent;
+}
+
+@mixin middleborder($color) {
+		height: 1px;
+		border-top: 1px solid $color;
+		position: relative;
+		top: 10px;
+		display: block;
+		z-index: -1;
+}
+
+@mixin fontbase($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+  line-height: lineheight($size);
+}
+
+
