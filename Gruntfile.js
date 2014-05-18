@@ -29,7 +29,8 @@ module.exports = function(grunt) {
 					'dist/': ['dev/templates/*.jade']
 				},
 				options: {
-					client: false
+					client: false,
+					wrap: false
 				}
 			}
 		},
