@@ -102,5 +102,22 @@ html(lang='en', ng-app="gitApp")
 							li git push origin master
 						p On Github or Bitbucket, click the Pull Request button and follow the instructions
 
+		script(type="text/ng-template", id="resetHard.html")
+			section.selection
+					.wrapper
+						.title Did you do the following steps?
+						ul.instruct
+							li git reset (files changed)
+						p Reset all changes and revert to the last commit
+						ul.instruct
+							li git reset --hard
+
+		script(type="text/ng-template", id="rebase.html")
+			section.selection
+					.wrapper
+						.title Did you do the following steps?
+						ul.instruct
+							li git pull --rebase
+
 		script
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');ga('create', 'UA-51053134-1', 'ibrokegit.com');ga('send', 'pageview');

@@ -27,6 +27,12 @@ iBrokeGit.controller('gitAppCtrl', function($scope) {
 		},{
 			text: 'Create a Pull Request',
 			url: 'pullRequest.html'
+		},{
+			text: 'Remove Changes from Staging',
+			url: 'resetHard.html'
+		}, {
+			text: 'Pull and Merge with minimal conflicts',
+			url: 'rebase.html'
 		}];
 	$scope.templateSelected = { text: 'Select an Option'};
 });
