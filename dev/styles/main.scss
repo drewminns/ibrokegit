@@ -37,6 +37,10 @@ $headingsfontfamily: "Montserrat Regular", "HelveticaNeue-Light", "Helvetica Neu
 $sourcefontfamily: "SourceCodePro-Regular", Monaco, "Bitstream Vera Sans Mono", monospace;
 $linkcolour: #0074D9;
 
+html {
+  height:100%;
+}
+
 body {
 	height: 100%;
 	color: #333;
