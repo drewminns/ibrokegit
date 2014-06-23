@@ -2,8 +2,6 @@
 
 var iBrokeGit = angular.module('gitApp', ['ngDropdowns', 'ngAnimate']);
 
-iBrokeGit.factory
-
 iBrokeGit.controller('gitAppCtrl', function($scope) {
 	$scope.templateOptions = [
 		{
