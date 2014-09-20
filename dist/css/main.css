@@ -1,6 +1,8 @@
 *,
 *:before,
 *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   -moz-border-box: box-sizing;
   -webkit-border-box: box-sizing;
@@ -3336,6 +3338,10 @@ Fonts are located in dist/css/fonts bro
   font-stretch: normal;
 }
 
+html {
+  height: 100%;
+}
+
 body {
   height: 100%;
   color: #333;
@@ -3454,7 +3460,6 @@ header.top .details h1.title {
 
 .includes.ng-enter {
   -webkit-animation: bounceInLeft 1s;
-  -moz-animation: bounceInLeft 1s;
   -ms-animation: bounceInLeft 1s;
   animation: bounceInLeft 1s;
 }
@@ -3521,6 +3526,7 @@ footer a {
   /* Styles */
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: 0 1px 1px rgba(50, 50, 50, 0.1);
   box-shadow: 0 1px 1px rgba(50, 50, 50, 0.1);
   cursor: pointer;
   outline: none;
@@ -3554,8 +3560,10 @@ footer a {
   padding: 0;
   border-radius: inherit;
   border: 1px solid rgba(0, 0, 0, 0.17);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   font-weight: normal;
+  -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
   list-style: none;
   /* Hiding */
@@ -3575,7 +3583,9 @@ footer a {
   text-decoration: none;
   color: #2c3e50;
   border-bottom: 1px solid #e6e8ea;
+  -webkit-box-shadow: inset 0 1px 0 white;
   box-shadow: inset 0 1px 0 white;
+  -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 }
 
@@ -3648,8 +3658,10 @@ footer a {
   padding: 0;
   border-radius: 7px;
   border: 1px solid rgba(0, 0, 0, 0.17);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
   font-weight: normal;
+  -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
   list-style: none;
   /* Hiding */
@@ -3668,7 +3680,9 @@ footer a {
   text-decoration: none;
   color: #8aa8bd;
   border-bottom: 1px solid #e6e8ea;
+  -webkit-box-shadow: inset 0 1px 0 white;
   box-shadow: inset 0 1px 0 white;
+  -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
 }
 
@@ -3724,6 +3738,7 @@ footer a {
   background: #fff;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 7px;
+  -webkit-box-shadow: 0 1px 1px rgba(50, 50, 50, 0.25);
   box-shadow: 0 1px 1px rgba(50, 50, 50, 0.25);
   /*style the text*/
   color: #8AA8BD;
@@ -3732,6 +3747,7 @@ footer a {
 }
 
 .btn-menu:hover, .btn-menu:focus {
+  -webkit-box-shadow: 0 1px 1px rgba(50, 50, 50, 0.75);
   box-shadow: 0 1px 1px rgba(50, 50, 50, 0.75);
 }
 
@@ -3743,8 +3759,6 @@ footer a {
 
 .sample-show-hide.ng-hide-add, .sample-show-hide.ng-hide-remove {
   -webkit-transition: all linear 0.5s;
-  -moz-transition: all linear 0.5s;
-  -o-transition: all linear 0.5s;
   transition: all linear 0.5s;
   display: block !important;
 }

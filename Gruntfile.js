@@ -48,7 +48,7 @@ module.exports = function(grunt) {
 					separator: ';'
 				},
 				src: [
-					'javascript/*.js'
+					'dev/javascript/*.js'
 				],
 				dest: 'dist/scripts/main.min.js'
 			},
@@ -134,7 +134,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-uncss');
 	// Run the server and watch for file changes
-	grunt.registerTask('default', ['jade', 'connect',  'concat', 'uglify', 'sass', 'watch']); // Build Tasks
-	grunt.registerTask('clean', ['uncss', 'autoprefixer', ]); // Deploy build tasks
+	grunt.registerTask('default', ['jade', 'connect',  'concat', 'uglify', 'sass', 'autoprefixer', 'watch']); // Build Tasks
+	grunt.registerTask('clean', ['uncss']); // Deploy build tasks
 	grunt.registerTask('inject', ['bowercopy', 'svginject']); // Inject Bower and SVG tools
 };
